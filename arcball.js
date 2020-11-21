@@ -4,7 +4,9 @@
  * so the mouse positions can be normalized into [-1, 1] from the pixel
  * coordinates.
  */
-var ArcballCamera = function(eye, center, up, zoomSpeed, screenDims) {
+import {vec2, vec3, mat3, mat4, quat} from "gl-matrix"
+
+export var ArcballCamera = function(eye, center, up, zoomSpeed, screenDims) {
     var veye = vec3.set(vec3.create(), eye[0], eye[1], eye[2]);
     var vcenter = vec3.set(vec3.create(), center[0], center[1], center[2]);
     var vup = vec3.set(vec3.create(), up[0], up[1], up[2]);
@@ -107,7 +109,7 @@ ArcballCamera.prototype.upDir = function() {
     return [dir[0], dir[1], dir[2]];
 }
 
-var screenToArcball = function(p) {
+export var screenToArcball = function(p) {
     var dist = vec2.dot(p, p);
     if (dist <= 1.0) {
         return quat.set(quat.create(), p[0], p[1], Math.sqrt(1.0 - dist), 0);
@@ -118,11 +120,12 @@ var screenToArcball = function(p) {
         return quat.set(quat.create(), unitP[0], unitP[1], 0, 0);
     }
 }
-var clamp = function(a, min, max) {
+
+export var clamp = function(a, min, max) {
     return a < min ? min : a > max ? max : a;
 }
 
-var pointDist = function(a, b) {
+export var pointDist = function(a, b) {
     var v = [b[0] - a[0], b[1] - a[1]];
     return Math.sqrt(Math.pow(v[0], 2.0) + Math.pow(v[1], 2.0));
 }

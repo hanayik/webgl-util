@@ -1,4 +1,4 @@
-var Buffer = function(capacity, dtype) {
+export var Buffer = function(capacity, dtype) {
     this.len = 0;
     this.capacity = capacity;
     if (dtype == "uint8") {

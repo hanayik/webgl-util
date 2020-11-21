@@ -1,6 +1,9 @@
 // Compute the view frustum in world space from the provided
 // column major projection * view matrix
-var Frustum = function(projView) {
+
+import {vec4} from "gl-matrix"
+
+export var Frustum = function(projView) {
     var rows = [vec4.create(), vec4.create(), vec4.create(), vec4.create()];
     for (var i = 0; i < rows.length; ++i) {
         rows[i] = vec4.set(rows[i], projView[i], projView[4 + i],

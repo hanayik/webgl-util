@@ -15,7 +15,11 @@
  * twoFingerDrag: function(dragVector)
  *     two finger drag, receives the drag movement amount
  */
-var Controller = function() {
+
+ import {vec2} from "gl-matrix"
+ import {pointDist} from "./arcball.js"
+
+export var Controller = function() {
     this.mousemove = null;
     this.press = null;
     this.wheel = null;
